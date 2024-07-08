@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: Product Management API
+  version: 1.0.0
+  description: API for managing product information by product name.
+paths:
+  /products/{name}:
+    get:
+      summary: Get product by name
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+          description: Name of the product
+      responses:
+        '200':
+          description: Product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: number
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
